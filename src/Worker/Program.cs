@@ -1,3 +1,8 @@
-﻿using Worker;
+﻿using KeepAlive;
 
-FunctionsWindows.DisabledProtectorWatch();
+int contador = 0;
+while (true)
+{
+    PowerUtilities.PreventPowerSave(contador);
+    contador++;
+}
