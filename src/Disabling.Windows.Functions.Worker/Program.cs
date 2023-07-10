@@ -1,9 +1,9 @@
+using Disabling.Windows.Functions.Worker.Service;
 using Domain.Configuration;
 using Domain.Interfaces;
 using Domain.Interfaces.Services;
 using Infrastructure;
 using Infrastructure.Task;
-using Disabling.Windows.Functions.Worker.Service;
 using Serilog;
 
 namespace Disabling.Windows.Functions.Worker
@@ -31,7 +31,8 @@ namespace Disabling.Windows.Functions.Worker
                     services.AddTransient<IWorkerNextTime, WorkerNextTime>();
                     services.AddTransient<IScheduleTask, ScheduleTask>();
                     services.AddTransient<IWorkerService, WorkerService>();
-                    services.Configure<WorkerOptions>(configuration.GetSection("WorkerOptions"));
+                    services.Configure<WorkerOptions>(options =>
+                    configuration.GetSection("WorkerOptions").Bind(options));
                     services.AddHostedService<Worker>();
 
                     services.AddSingleton<Serilog.ILogger, Serilog.Core.Logger>(x =>
@@ -44,7 +45,6 @@ namespace Disabling.Windows.Functions.Worker
                     });
 
                     services.AddInfrastructure(configuration);
-
                 });
     }
 }

@@ -35,7 +35,7 @@ namespace Disabling.Windows.Functions.Worker
                 {
                     while (!stoppingToken.IsCancellationRequested)
                     {
-                        _scheduleTask.ExecuteTaskOnTime(_purgeNextTime.GetWaitingTime(new WorkerOptions()), () => _purgeService.Execute(new WorkerOptions()));
+                        _scheduleTask.ExecuteTaskOnTime(_purgeNextTime.GetWaitingTime(_purgeConfig), () => _purgeService.Execute(_purgeConfig));
                     }
                 }, stoppingToken);
             }
