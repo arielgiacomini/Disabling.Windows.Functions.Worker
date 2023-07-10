@@ -2,7 +2,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Services;
 
-namespace Purge.Worker.Service
+namespace Disabling.Windows.Functions.Worker.Service
 {
     public class WorkerService : IWorkerService
     {

@@ -3,10 +3,10 @@ using Domain.Interfaces;
 using Domain.Interfaces.Services;
 using Infrastructure;
 using Infrastructure.Task;
-using Purge.Worker.Service;
+using Disabling.Windows.Functions.Worker.Service;
 using Serilog;
 
-namespace Purge.Worker
+namespace Disabling.Windows.Functions.Worker
 {
     public class Program
     {

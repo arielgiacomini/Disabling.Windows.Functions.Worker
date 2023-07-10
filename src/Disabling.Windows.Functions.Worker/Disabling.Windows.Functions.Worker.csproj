@@ -4,12 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-Purge.Worker-2b9b3a51-9f47-426f-8d17-ff232f3f7fd8</UserSecretsId>
+    <UserSecretsId>dotnet-Disabling.Windows.Functions.Worker-2b9b3a51-9f47-426f-8d17-ff232f3f7fd8</UserSecretsId>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bull.Core.WebAPI" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />

@@ -3,7 +3,7 @@ using Domain.Interfaces;
 using Domain.Interfaces.Services;
 using Microsoft.Extensions.Options;
 
-namespace Purge.Worker
+namespace Disabling.Windows.Functions.Worker
 {
     public class Worker : BackgroundService
     {
