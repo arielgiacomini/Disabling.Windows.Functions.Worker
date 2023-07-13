@@ -20,6 +20,8 @@ namespace Infrastructure.Command
             {
                 PurgeOutput output = new();
 
+                _logger.Information("Executou com sucesso!!! :)");
+
                 return output;
             }
             catch (Exception ex)

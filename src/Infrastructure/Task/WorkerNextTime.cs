@@ -20,7 +20,11 @@ namespace Infrastructure.Task
         {
             try
             {
-                DateTime dataDeExecucao = GetNextExecutionDate(workerOptions.StartTime.Hours, workerOptions.StartTime.Minutes);
+                DateTime dataDeExecucao = GetNextExecutionDate(
+                    workerOptions.StartTime.Hours,
+                    workerOptions.StartTime.Minutes,
+                    workerOptions.AddDay,
+                    workerOptions.MinutesPerRound);
 
                 _logger.Information("Data programada para próximas execução Data/Hora: [{0}]", dataDeExecucao);
 
@@ -34,7 +38,7 @@ namespace Infrastructure.Task
             }
         }
 
-        public static DateTime GetNextExecutionDate(int hour, int minute)
+        public static DateTime GetNextExecutionDate(int hour, int minute, bool addDay = true, int? minuteToAdd = null)
         {
             var dataDeExecucao = new DateTime(
                 year: DateTime.Now.Year,
@@ -44,8 +48,16 @@ namespace Infrastructure.Task
                 minute: minute,
                 second: 0);
 
-            if (DateTime.Now > dataDeExecucao)
-                dataDeExecucao = dataDeExecucao.AddDays(1);
+            if (addDay)
+            {
+                if (DateTime.Now > dataDeExecucao)
+                    dataDeExecucao = dataDeExecucao.AddDays(1);
+            }
+
+            if (minuteToAdd.HasValue)
+            {
+                dataDeExecucao = DateTime.Now.AddMinutes(minuteToAdd.Value);
+            }
 
             return dataDeExecucao;
         }
