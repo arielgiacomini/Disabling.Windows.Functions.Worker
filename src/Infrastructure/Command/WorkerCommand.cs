@@ -14,11 +14,11 @@ namespace Infrastructure.Command
             _logger = logger;
         }
 
-        public PurgeOutput SetThread(WorkerOptions purgeSprecificBySystem)
+        public WorkerOutput SetThread(WorkerOptions workerOptions)
         {
             try
             {
-                PurgeOutput output = new();
+                WorkerOutput output = new();
 
                 _logger.Information("Executou com sucesso!!! :)");
 

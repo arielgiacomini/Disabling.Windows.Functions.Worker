@@ -5,6 +5,6 @@ namespace Domain.Interfaces
 {
     public interface IWorkerCommand
     {
-        PurgeOutput SetThread(WorkerOptions purgeSprecificBySystem);
+        WorkerOutput SetThread(WorkerOptions workerOptions);
     }
 }

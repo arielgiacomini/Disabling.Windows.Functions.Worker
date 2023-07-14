@@ -9,33 +9,33 @@ namespace Disabling.Windows.Functions.Worker
     {
         private readonly Serilog.ILogger _logger;
         private readonly IScheduleTask _scheduleTask;
-        private readonly IWorkerNextTime _purgeNextTime;
-        private readonly IWorkerService _purgeService;
-        private readonly WorkerOptions _purgeConfig;
+        private readonly IWorkerNextTime _workerNextTime;
+        private readonly IWorkerService _workerService;
+        private readonly WorkerOptions _workerConfig;
 
         public Worker(
             Serilog.ILogger logger,
             IScheduleTask scheduleTask,
-            IWorkerNextTime purgeNextTime,
-            IWorkerService purgeService,
-            IOptions<WorkerOptions> purgeConfig)
+            IWorkerNextTime workerNextTime,
+            IWorkerService workerService,
+            IOptions<WorkerOptions> workerConfig)
         {
             _logger = logger;
             _scheduleTask = scheduleTask;
-            _purgeNextTime = purgeNextTime;
-            _purgeService = purgeService;
-            _purgeConfig = purgeConfig.Value;
+            _workerNextTime = workerNextTime;
+            _workerService = workerService;
+            _workerConfig = workerConfig.Value;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            if (IsPurgeTaskSchedulerEnabled())
+            if (IsWorkerTaskSchedulerEnabled())
             {
                 _ = Task.Run(() =>
                 {
                     while (!stoppingToken.IsCancellationRequested)
                     {
-                        _scheduleTask.ExecuteTaskOnTime(_purgeNextTime.GetWaitingTime(_purgeConfig), () => _purgeService.Execute(_purgeConfig));
+                        _scheduleTask.ExecuteTaskOnTime(_workerNextTime.GetWaitingTime(_workerConfig), () => _workerService.Execute(_workerConfig));
                     }
                 }, stoppingToken);
             }
@@ -47,11 +47,11 @@ namespace Disabling.Windows.Functions.Worker
             return Task.CompletedTask;
         }
 
-        public bool IsPurgeTaskSchedulerEnabled()
+        public bool IsWorkerTaskSchedulerEnabled()
         {
             try
             {
-                if (_purgeConfig.Enable.HasValue && _purgeConfig.Enable.Value)
+                if (_workerConfig.Enable.HasValue && _workerConfig.Enable.Value)
                 {
                     return true;
                 }
@@ -62,7 +62,7 @@ namespace Disabling.Windows.Functions.Worker
             }
             catch (Exception ex)
             {
-                _logger.Error("[{0}] - Erro ao tentar buscar a config de expurgo. Error: {1}", nameof(IsPurgeTaskSchedulerEnabled), ex);
+                _logger.Error("[{0}] - Erro ao tentar buscar a config de expurgo. Error: {1}", nameof(IsWorkerTaskSchedulerEnabled), ex);
                 return false;
             }
         }

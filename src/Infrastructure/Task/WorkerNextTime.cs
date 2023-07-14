@@ -10,10 +10,10 @@ namespace Infrastructure.Task
         private readonly WorkerOptions _workerOptionsConfig;
 
         public WorkerNextTime(Serilog.ILogger logger,
-            IOptions<WorkerOptions> purgeConfig)
+            IOptions<WorkerOptions> workerConfig)
         {
             _logger = logger;
-            _workerOptionsConfig = purgeConfig.Value;
+            _workerOptionsConfig = workerConfig.Value;
         }
 
         public TimeSpan GetWaitingTime(WorkerOptions workerOptions)

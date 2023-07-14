@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{B6AED743-A343-4FA7-9D47-5DD514BC8AB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Purge.Worker", "src\Disabling.Windows.Functions.Worker\Disabling.Windows.Functions.Worker.csproj", "{D0D84099-5240-4C13-B619-54BDFCF75DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Disabling.Windows.Functions.Worker", "src\Disabling.Windows.Functions.Worker\Disabling.Windows.Functions.Worker.csproj", "{D0D84099-5240-4C13-B619-54BDFCF75DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{657D0339-9EFA-4BDE-9207-714E6C416215}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA26BE9F-CD69-4CA6-8EF5-016BCFFE6CB3} = {657D0339-9EFA-4BDE-9207-714E6C416215}
+		{B6AED743-A343-4FA7-9D47-5DD514BC8AB8} = {657D0339-9EFA-4BDE-9207-714E6C416215}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D847BB50-10AF-4ABF-8A0A-0D512EB87EEF}

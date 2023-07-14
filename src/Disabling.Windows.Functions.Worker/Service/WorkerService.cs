@@ -7,21 +7,21 @@ namespace Disabling.Windows.Functions.Worker.Service
     public class WorkerService : IWorkerService
     {
         private readonly Serilog.ILogger _logger;
-        private readonly IWorkerCommand _purgeCommand;
+        private readonly IWorkerCommand _workerCommand;
 
         public WorkerService(
             Serilog.ILogger logger,
-            IWorkerCommand purgeCommand)
+            IWorkerCommand workerCommand)
         {
             _logger = logger;
-            _purgeCommand = purgeCommand;
+            _workerCommand = workerCommand;
         }
 
         public void Execute(WorkerOptions workerOptions)
         {
             try
             {
-                _purgeCommand.SetThread(workerOptions);
+                _workerCommand.SetThread(workerOptions);
             }
             catch (Exception ex)
             {
